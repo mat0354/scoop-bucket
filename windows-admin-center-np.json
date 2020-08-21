@@ -1,0 +1,28 @@
+{
+    "version": "2007",
+    "description": "Windows Admin Center is a locally deployed, browser-based app for managing Windows servers, clusters, hyper-converged infrastructure, as well as Windows 10 PCs.",
+    "homepage": "https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/support/release-history",
+    "license": "Freeware",
+    "url": "https://aka.ms/WACDownload#/WindowsAdminCenter.msi",
+    "hash": "984321E591A37540E12EC2975241174B84BF1C8119802D1F0F643F9743C6B097",
+    "installer": {
+        "script": [
+            "$bin = \"$dir\\WindowsAdminCenter.msi\"",
+            "$log = \"$dir\\WindowsAdminCenter-Install.log\"",
+            "$arg = \"SSL_CERTIFICATE_OPTION=generate\"",
+            "Start-Process -Wait msiexec \"/i $bin /qn /L*v $log $arg TARGETDIR=`\"$dir`\" INSTALLDIR=`\"$dir`\"\" -Verb RunAs"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "Start-Process -Wait msiexec \"/x '{925CF8A7-AA21-455B-A042-F209DB0D18E6}' /qn\" -Verb RunAs"
+        ]
+    },
+    "bin": "\\sme.exe",
+    "checkver": {
+        "regex": "(?<version>[\\d]+)<\/a> is the most recent GA release"
+    },
+    "autoupdate": {
+        "url": "https://aka.ms/WACDownload"
+    }
+}
