@@ -18,7 +18,7 @@
             "Start-Process -Wait msiexec \"/x '{925CF8A7-AA21-455B-A042-F209DB0D18E6}' /qn\" -Verb RunAs"
         ]
     },
-    "bin": "\\sme.exe",
+    "bin": "Windows Admin Center\\sme.exe",
     "checkver": {
         "regex": "(?<version>[\\d]+)<\/a> is the most recent GA release"
     },
