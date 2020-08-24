@@ -1,6 +1,6 @@
 {
     "##": "Renaming .msi to .msi_ so that the MSI package will not be automatically extracted by Scoop.",
-    "version": "1910",
+    "version": "2007",
     "description": "Windows Admin Center is a locally deployed, browser-based app for managing Windows servers, clusters, hyper-converged infrastructure, as well as Windows 10 PCs.",
     "homepage": "https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview",
     "license": "Freeware",
@@ -12,10 +12,10 @@
     "architecture": {
         "64bit": {
             "url": "https://aka.ms/WACDownload#/WindowsAdminCenter.msi_",
-            "hash": "f3be806d00d8e485cd57fc282a680f1440833dbcfa99d1cee8612e233b36b0e8"
+            "hash": "984321e591a37540e12ec2975241174b84bf1c8119802d1f0f643f9743c6b097"
         }
     },
-    "pre_install":  [
+    "pre_install": [
         "if (-Not (is_admin)) { error 'Administrator privileges needed'; break }",
         "if (-Not ($PSVersionTable.PSVersion -ge [System.Version]'5.1')) { error 'WMF version 5.1 or higher needed'; break }"
     ],
@@ -29,7 +29,6 @@
         "Remove-Item \"$dir\\WindowsAdminCenter.msi_\"",
         "Restart-Service -Name WinRM",
         "Restart-Service -Name ServerManagementGateway"
-        
     ],
     "uninstaller": {
         "script": [
