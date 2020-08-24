@@ -1,28 +1,56 @@
 {
-    "version": "2007",
+    "##": "Renaming .msi to .msi_ so that the MSI package will not be automatically extracted by Scoop.",
+    "version": "1910",
     "description": "Windows Admin Center is a locally deployed, browser-based app for managing Windows servers, clusters, hyper-converged infrastructure, as well as Windows 10 PCs.",
-    "homepage": "https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/support/release-history",
+    "homepage": "https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview",
     "license": "Freeware",
-    "url": "https://aka.ms/WACDownload#/WindowsAdminCenter.msi",
-    "hash": "984321E591A37540E12EC2975241174B84BF1C8119802D1F0F643F9743C6B097",
+    "notes": [
+        "Persistent data stored in C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\ServerManagementExperience",
+        "To manage updates with \"Windows Update\" uncomment $InstalledBuild from uninstaller section",
+        "create pull request? https://github.com/TheRandomLabs/scoop-nonportable"
+    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://aka.ms/WACDownload#/WindowsAdminCenter.msi_",
+            "hash": "f3be806d00d8e485cd57fc282a680f1440833dbcfa99d1cee8612e233b36b0e8"
+        }
+    },
+    "pre_install":  [
+        "if (-Not (is_admin)) { error 'Administrator privileges needed'; break }",
+        "if (-Not ($PSVersionTable.PSVersion -ge [System.Version]'5.1')) { error 'WMF version 5.1 or higher needed'; break }"
+    ],
     "installer": {
         "script": [
-            "$bin = \"$dir\\WindowsAdminCenter.msi\"",
-            "$log = \"$dir\\WindowsAdminCenter-Install.log\"",
-            "$arg = \"SSL_CERTIFICATE_OPTION=generate\"",
-            "Start-Process -Wait msiexec \"/i $bin /qn /L*v $log $arg TARGETDIR=`\"$dir`\" INSTALLDIR=`\"$dir`\"\" -Verb RunAs"
+            "$InstallExitCode = (Start-Process -Wait msiexec \"/i `\"$dir\\WindowsAdminCenter.msi_`\" /qn /L*v `\"$dir\\WindowsAdminCenter-Install.log`\" SME_PORT=6516 SSL_CERTIFICATE_OPTION=generate MS_UPDATE_OPT_IN=no RESTART_WINRM=0\" -Verb RunAs -Passthru).ExitCode",
+            "if ($InstallExitCode -ne 0) { abort \"Install failed with ExitCode [$InstallExitCode]. See log for details:`n$dir\\WindowsAdminCenter-Install.log\" }"
         ]
     },
+    "post_install": [
+        "Remove-Item \"$dir\\WindowsAdminCenter.msi_\"",
+        "Restart-Service -Name WinRM",
+        "Restart-Service -Name ServerManagementGateway"
+        
+    ],
     "uninstaller": {
         "script": [
-            "Start-Process -Wait msiexec \"/x '{925CF8A7-AA21-455B-A042-F209DB0D18E6}' /qn\" -Verb RunAs"
+            "if (-Not (is_admin)) { error 'Administrator privileges needed'; break }",
+            "# $InstalledBuild = ([System.Version](Get-Item -Path ((Get-WmiObject -Class Win32_Product -Filter \"Name = 'Windows Admin Center'\").InstallLocation + \"sme.exe\") -ErrorAction SilentlyContinue).VersionInfo.FileVersion).Build",
+            "# if ($InstalledBuild -gt $version) { error 'Newer version already installed'; break }",
+            "$IdentifyingNumber = (Get-WmiObject -Class Win32_Product -Filter \"Name = 'Windows Admin Center'\").IdentifyingNumber",
+            "$UninstallExitCode = (Start-Process -Wait msiexec \"/x `\"$IdentifyingNumber`\" /qn /L*v `\"$dir\\WindowsAdminCenter-Uninstall.log`\" RESTART_WINRM=0\" -Verb RunAs -Passthru).ExitCode",
+            "if ($UninstallExitCode -ne 0) { abort \"Uninstall failed with ExitCode [$UninstallExitCode]. See log for details:`n$dir\\WindowsAdminCenter-Uninstall.log\" }",
+            "Restart-Service -Name WinRM"
         ]
     },
-    "bin": "Windows Admin Center\\sme.exe",
     "checkver": {
-        "regex": "(?<version>[\\d]+)<\/a> is the most recent GA release"
+        "url": "https://raw.githubusercontent.com/MicrosoftDocs/windowsserverdocs/master/WindowsServerDocs/manage/windows-admin-center/support/release-history.md",
+        "regex": "\\[(?<version>[\\d.]+)\\].*is the most recent GA release"
     },
     "autoupdate": {
-        "url": "https://aka.ms/WACDownload"
+        "architecture": {
+            "64bit": {
+                "url": "https://aka.ms/WACDownload#/WindowsAdminCenter.msi_"
+            }
+        }
     }
 }
