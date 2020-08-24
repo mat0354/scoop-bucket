@@ -1,6 +1,6 @@
 {
     "##": "Renaming .msi to .msi_ so that the MSI package will not be automatically extracted by Scoop.",
-    "version": "2007",
+    "version": "1910",
     "description": "Windows Admin Center is a locally deployed, browser-based app for managing Windows servers, clusters, hyper-converged infrastructure, as well as Windows 10 PCs.",
     "homepage": "https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview",
     "license": "Freeware",
