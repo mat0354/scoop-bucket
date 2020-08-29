@@ -6,6 +6,7 @@
     "license": "Freeware",
     "notes": [
         "Persistent data stored in C:\\Windows\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\ServerManagementExperience_persist",
+        "and C:\\ProgramData\\Server Management Experience",
         "To manage updates with \"Windows Update\" uncomment $InstalledBuild from uninstaller section",
         "create pull request? https://github.com/TheRandomLabs/scoop-nonportable"
     ],
@@ -22,7 +23,9 @@
     "installer": {
         "script": [
             "New-Item -Path \"$env:SystemRoot\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\ServerManagementExperience_persist\" -Type Directory -ErrorAction SilentlyContinue | Out-Null",
+            "New-Item -Path \"$env:ProgramData\\Server Management Experience_persist\" -Type Directory -ErrorAction SilentlyContinue | Out-Null",
             "New-Item -Path \"$env:SystemRoot\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\ServerManagementExperience\" -Target \"$env:SystemRoot\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\ServerManagementExperience_persist\" -ItemType Junction | Out-Null",
+            "New-Item -Path \"$env:ProgramData\\Server Management Experience\" -Target \"$env:ProgramData\\Server Management Experience_persist\" -ItemType Junction | Out-Null",
             "$InstallExitCode = (Start-Process -Wait msiexec \"/i `\"$dir\\WindowsAdminCenter.msi_`\" /qn /L*v `\"$dir\\WindowsAdminCenter-Install.log`\" SME_PORT=6516 SSL_CERTIFICATE_OPTION=generate MS_UPDATE_OPT_IN=no RESTART_WINRM=0\" -Verb RunAs -Passthru).ExitCode",
             "if ($InstallExitCode -ne 0) { abort \"Install failed with ExitCode [$InstallExitCode]. See log for details:`n$dir\\WindowsAdminCenter-Install.log\" }"
         ]
