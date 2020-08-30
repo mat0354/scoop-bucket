@@ -36,6 +36,7 @@
     },
     "post_install": [
         "Remove-Item \"$dir\\WindowsAdminCenter.msi_\"",
+        "if ($ServerCertificateThumbprint) {Get-ChildItem -Path 'Cert:\\LocalMachine\\My' | Where-Object Subject -like 'CN=Windows Admin Center*' | Remove-Item -ErrorAction SilentlyContinue}",
         "Restart-Service -Name WinRM",
         "Restart-Service -Name ServerManagementGateway"
     ],
