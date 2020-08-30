@@ -26,7 +26,11 @@
             "New-Item -Path \"$env:ProgramData\\Server Management Experience_persist\" -Type Directory -ErrorAction SilentlyContinue | Out-Null",
             "New-Item -Path \"$env:SystemRoot\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\ServerManagementExperience\" -Target \"$env:SystemRoot\\ServiceProfiles\\NetworkService\\AppData\\Roaming\\Microsoft\\ServerManagementExperience_persist\" -ItemType Junction | Out-Null",
             "New-Item -Path \"$env:ProgramData\\Server Management Experience\" -Target \"$env:ProgramData\\Server Management Experience_persist\" -ItemType Junction | Out-Null",
-            "$InstallExitCode = (Start-Process -Wait msiexec \"/i `\"$dir\\WindowsAdminCenter.msi_`\" /qn /L*v `\"$dir\\WindowsAdminCenter-Install.log`\" SME_PORT=6516 SSL_CERTIFICATE_OPTION=generate MS_UPDATE_OPT_IN=no RESTART_WINRM=0\" -Verb RunAs -Passthru).ExitCode",
+            "$ServerCertificateThumbprint = (Get-ChildItem -Path \"Cert:\\LocalMachine\\My\" | Where-Object { $_.HasPrivateKey -eq $true -and $_.EnhancedKeyUsageList -like \"*Server Authentication*\" -and $_.DnsNameList -in \"$([System.Net.Dns]::GetHostByName((hostname)).HostName.ToLower())\" -and $_.NotAfter -ge (Get-Date) } | Sort-Object NotAfter | Select-Object -First 1).Thumbprint",
+            "$SmePort = 6516",
+            "if ($ServerCertificateThumbprint) {$MsiArgumentString = \"SME_PORT=$SmePort SSL_CERTIFICATE_OPTION=installed SME_THUMBPRINT=$ServerCertificateThumbprint MS_UPDATE_OPT_IN=no RESTART_WINRM=0\"} else {\"SME_PORT=$SmePort SSL_CERTIFICATE_OPTION=generate MS_UPDATE_OPT_IN=no RESTART_WINRM=0\"}",
+            "# $MsiArgumentString += \" REINSTALLMODE=amus REINSTALL=ALL\"",
+            "$InstallExitCode = (Start-Process -Wait msiexec \"/i `\"$dir\\WindowsAdminCenter.msi_`\" /qn /L*v `\"$dir\\WindowsAdminCenter-Install.log`\" $MsiArgumentString\" -Verb RunAs -Passthru).ExitCode",
             "if ($InstallExitCode -ne 0) { abort \"Install failed with ExitCode [$InstallExitCode]. See log for details:`n$dir\\WindowsAdminCenter-Install.log\" }"
         ]
     },
