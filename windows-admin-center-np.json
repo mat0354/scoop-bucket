@@ -31,12 +31,12 @@
             "if ($ServerCertificateThumbprint) {$MsiArgumentString = \"SME_PORT=$SmePort SSL_CERTIFICATE_OPTION=installed SME_THUMBPRINT=$ServerCertificateThumbprint MS_UPDATE_OPT_IN=no RESTART_WINRM=0\"} else {\"SME_PORT=$SmePort SSL_CERTIFICATE_OPTION=generate MS_UPDATE_OPT_IN=no RESTART_WINRM=0\"}",
             "# $MsiArgumentString += \" REINSTALLMODE=amus REINSTALL=ALL\"",
             "$InstallExitCode = (Start-Process -Wait msiexec \"/i `\"$dir\\WindowsAdminCenter.msi_`\" /qn /L*v `\"$dir\\WindowsAdminCenter-Install.log`\" $MsiArgumentString\" -Verb RunAs -Passthru).ExitCode",
-            "if ($InstallExitCode -ne 0) { abort \"Install failed with ExitCode [$InstallExitCode]. See log for details:`n$dir\\WindowsAdminCenter-Install.log\" }"
+            "if ($InstallExitCode -ne 0) { abort \"Install failed with ExitCode [$InstallExitCode]. See log for details:`n$dir\\WindowsAdminCenter-Install.log\" }",
+            "if ($ServerCertificateThumbprint) {Get-ChildItem -Path 'Cert:\\LocalMachine\\My' | Where-Object { $_.Subject -eq 'CN=Windows Admin Center Encryption' } | Remove-Item}"
         ]
     },
     "post_install": [
         "Remove-Item \"$dir\\WindowsAdminCenter.msi_\"",
-        "if ($ServerCertificateThumbprint) {Get-ChildItem -Path 'Cert:\\LocalMachine\\My' | Where-Object Subject -like 'CN=Windows Admin Center*' | Remove-Item}",
         "Restart-Service -Name WinRM",
         "Restart-Service -Name ServerManagementGateway"
     ],
