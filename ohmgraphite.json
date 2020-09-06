@@ -7,7 +7,7 @@
         "64bit": {
             "url": "https://github.com/nickbabcock/OhmGraphite/releases/download/v0.14.0/OhmGraphite-0.14.0.zip",
             "hash": "390CA40B32B1531D222FD5007D7B0E57B1D42C42FA9F3C6DAD27DFC576B46D9B",
-            "extract_dir": "OhmGraphite-0.14.0"
+            "extract_dir": "OhmGraphite-0.14.0-full"
         }
     },
     "bin": "OhmGraphite.exe",
@@ -18,7 +18,7 @@
         "architecture": {
             "64bit": {
                 "url": "https://github.com/nickbabcock/OhmGraphite/releases/download/v$version/OhmGraphite-$version.zip",
-                "extract_dir": "OhmGraphite-$version"
+                "extract_dir": "OhmGraphite-$version-full"
             }
         }
     }
