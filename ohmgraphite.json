@@ -1,12 +1,12 @@
 {
-    "version": "0.14.0",
+    "version": "0.15.0",
     "description": "OhmGraphite takes the hard work of extracting hardware sensors from Open Hardware Monitor and exports the data in a graphite (or InfluxdDB / Prometheus / TimescaleDB) compatible format.",
     "homepage": "https://github.com/nickbabcock/OhmGraphite",
     "license": "MPL 2.0",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/nickbabcock/OhmGraphite/releases/download/v0.14.0/OhmGraphite-0.14.0.zip",
-            "hash": "390CA40B32B1531D222FD5007D7B0E57B1D42C42FA9F3C6DAD27DFC576B46D9B"
+            "url": "https://github.com/nickbabcock/OhmGraphite/releases/download/v0.15.0/OhmGraphite-0.15.0.zip",
+            "hash": "d1ef360bb07e9c6a671b1d03d290c97a45e759f6115c1329f9a8cf5c437f6408"
         }
     },
     "bin": "OhmGraphite.exe",
