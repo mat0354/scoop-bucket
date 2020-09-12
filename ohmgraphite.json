@@ -14,6 +14,16 @@
         "NLog.config",
         "OhmGraphite.exe.config"
     ],
+    "installer": {
+        "script": [
+            "OhmGraphite.exe install"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "OhmGraphite.exe uninstall"
+        ]
+    },
     "checkver": {
         "github": "https://github.com/nickbabcock/OhmGraphite"
     },
