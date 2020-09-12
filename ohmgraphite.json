@@ -16,12 +16,12 @@
     ],
     "installer": {
         "script": [
-            "$env:scoop\\apps\\ohmgraphite\\current\\OhmGraphite.exe install"
+            "\"$env:scoop\\apps\\ohmgraphite\\current\\OhmGraphite.exe\" install"
         ]
     },
     "uninstaller": {
         "script": [
-            "$env:scoop\\apps\\ohmgraphite\\current\\OhmGraphite.exe uninstall"
+            "\"$env:scoop\\apps\\ohmgraphite\\current\\OhmGraphite.exe\" uninstall"
         ]
     },
     "checkver": {
