@@ -10,6 +10,10 @@
         }
     },
     "bin": "OhmGraphite.exe",
+    "persist": [
+        "NLog.config",
+        "OhmGraphite.exe.config"
+    ],
     "checkver": {
         "github": "https://github.com/nickbabcock/OhmGraphite"
     },
