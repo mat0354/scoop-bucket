@@ -16,12 +16,13 @@
     ],
     "installer": {
         "script": [
-            "Start-Process -Wait \"$env:scoop\\apps\\ohmgraphite\\current\\OhmGraphite.exe\" \"install\""
+            "Start-Process -Wait \"$env:scoop\\apps\\OhmGraphite\\$version\\OhmGraphite.exe\" \"install\"",
+            "#Start-Process -Wait \"$env:scoop\\apps\\OhmGraphite\\current\\OhmGraphite.exe\" \"install\""
         ]
     },
     "uninstaller": {
         "script": [
-            "Start-Process -Wait \"$env:scoop\\apps\\ohmgraphite\\current\\OhmGraphite.exe\" \"uninstall\""
+            "Start-Process -Wait \"$env:scoop\\apps\\OhmGraphite\\current\\OhmGraphite.exe\" \"uninstall\""
         ]
     },
     "checkver": {
