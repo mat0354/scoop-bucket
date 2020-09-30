@@ -1,6 +1,6 @@
 {
     "##": "Renaming .msi to .msi_ so that the MSI package will not be automatically extracted by Scoop.",
-    "version": "2007",
+    "version": "2009",
     "description": "Windows Admin Center is a locally deployed, browser-based app for managing Windows servers, clusters, hyper-converged infrastructure, as well as Windows 10 PCs.",
     "homepage": "https://docs.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview",
     "license": "Freeware",
@@ -13,7 +13,7 @@
     "architecture": {
         "64bit": {
             "url": "https://aka.ms/WACDownload#/WindowsAdminCenter.msi_",
-            "hash": "984321e591a37540e12ec2975241174b84bf1c8119802d1f0f643f9743c6b097"
+            "hash": "d41172263baee52ab633de388358550fd879d430096d6e06608f5ecbd2b9bdef"
         }
     },
     "pre_install": [
