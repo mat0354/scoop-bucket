@@ -32,7 +32,6 @@
             "if (-Not (is_admin)) { error 'Administrator privileges needed'; break }",
             "Stop-Service -Name telegraf",
             ".\"$scoopdir\\apps\\telegraf-np\\current\\telegraf.exe\" --service uninstall"
-            
         ]
     },
     "autoupdate": {
