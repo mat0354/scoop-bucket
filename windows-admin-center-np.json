@@ -40,9 +40,10 @@
     "uninstaller": {
         "script": [
             "if (-Not (is_admin)) { error 'Administrator privileges needed'; break }",
-            "# $InstalledBuild = ([System.Version](Get-Item -Path ((Get-WmiObject -Class Win32_Product -Filter \"Name = 'Windows Admin Center'\").InstallLocation + \"sme.exe\") -ErrorAction SilentlyContinue).VersionInfo.FileVersion).Build",
-            "if ($InstalledBuild -gt $version) { error 'Newer version already installed'; break }",
-            "$IdentifyingNumber = (Get-WmiObject -Class Win32_Product -Filter \"Name = 'Windows Admin Center'\").IdentifyingNumber",
+            "$InstalledVersion = Get-WmiObject -Class Win32_Product -Filter \"Name = 'Windows Admin Center'\"",
+            "$InstalledBuild = ([System.Version](Get-Item -Path \"$($InstalledVersion.InstallLocation)\\sme.exe\" -ErrorAction SilentlyContinue).VersionInfo.FileVersion).Build",
+            "if ($InstalledBuild -ge $version) { error 'Newer version already installed'; break }",
+            "$IdentifyingNumber = $InstalledVersion.IdentifyingNumber",
             "$UninstallExitCode = (Start-Process -Wait msiexec \"/x `\"$IdentifyingNumber`\" /qn /L*v `\"$dir\\WindowsAdminCenter-Uninstall.log`\" RESTART_WINRM=0\" -Verb RunAs -Passthru).ExitCode",
             "if ($UninstallExitCode -ne 0) { abort \"Uninstall failed with ExitCode [$UninstallExitCode]. See log for details:`n$dir\\WindowsAdminCenter-Uninstall.log\" }",
             "Restart-Service -Name WinRM"
