@@ -1,7 +1,7 @@
 {
     "homepage": "https://www.influxdata.com/time-series-platform/telegraf/",
     "license": "MIT",
-    "version": "1.18.2",
+    "version": "0.0.0",
     "description": "The plugin-driven server agent for collecting & reporting metrics.",
     "architecture": {
         "64bit": {
