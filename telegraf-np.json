@@ -40,7 +40,7 @@
                 "url": "https://dl.influxdata.com/telegraf/releases/telegraf-$version_windows_amd64.zip",
                 "hash": {
                     "url": "https://portal.influxdata.com/downloads/",
-                    "regex": "$sha256.*\\s.*$basename"
+                    "regex": "$sha256.*\\n.*\\n.*\\/$basename"
                 },
                 "extract_dir": "telegraf-$version"
             }
