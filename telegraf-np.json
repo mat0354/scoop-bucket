@@ -1,13 +1,13 @@
 {
     "homepage": "https://www.influxdata.com/time-series-platform/telegraf/",
     "license": "MIT",
-    "version": "1.19.3",
+    "version": "1.20.0",
     "description": "The plugin-driven server agent for collecting & reporting metrics.",
     "architecture": {
         "64bit": {
-            "url": "https://dl.influxdata.com/telegraf/releases/telegraf-1.19.3_windows_amd64.zip",
-            "hash": "31bda0a456dcdf114f43dcfd0bd7ab6358fe4ceff5ff3209070fbf19ad218bbe",
-            "extract_dir": "telegraf-1.19.3"
+            "url": "https://dl.influxdata.com/telegraf/releases/telegraf-1.20.0_windows_amd64.zip",
+            "hash": "d94475df292da995418f6c74baeb11728cb1870f8bf2561528e162c67af31f84",
+            "extract_dir": "telegraf-1.20.0"
         }
     },
     "persist": "telegraf.conf",
