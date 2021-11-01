@@ -25,6 +25,7 @@
     },
     "post_install": [
         ".\"$scoopdir\\apps\\telegraf-np\\current\\telegraf.exe\" --config \"$persist_dir\\telegraf.conf\" --config-directory \"$persist_dir\\telegraf.d\" --service-name telegraf --service install",
+        "sc.exe failure telegraf actions= restart/60000/restart/60000// reset= 0",
         "Start-Service -Name telegraf"
     ],
     "uninstaller": {
