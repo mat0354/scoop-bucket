@@ -6,8 +6,7 @@
     "architecture": {
         "64bit": {
             "url": "https://github.com/grafana/loki/releases/download/v2.4.1/loki-windows-amd64.exe.zip",
-            "hash": "6594dcc8cf662e8134f556f3db192dbf3af9a2714b143ead5763ae4786942a8e",
-            "extract_dir": "loki-2.4.1.windows-amd64"
+            "hash": "6594dcc8cf662e8134f556f3db192dbf3af9a2714b143ead5763ae4786942a8e"
         }
     },
     "bin": "loki-windows-amd64.exe",
@@ -17,8 +16,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/grafana/loki/releases/download/v$version/loki-windows-amd64.exe.zip",
-                "extract_dir": "loki-$version.windows-amd64"
+                "url": "https://github.com/grafana/loki/releases/download/v$version/loki-windows-amd64.exe.zip"
             }
         },
         "hash": {
