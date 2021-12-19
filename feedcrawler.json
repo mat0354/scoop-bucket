@@ -5,7 +5,7 @@
     "license": "MIT License",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/rix1337/FeedCrawler/releases/download/v.11.1.7/feedcrawler-11.1.7-standalone-win64.exe#/feedcrawler.exe"
+            "url": "https://github.com/rix1337/FeedCrawler/releases/download/v11.1.7/feedcrawler-11.1.7-standalone-win64.exe#/feedcrawler.exe"
         }
     },
     "bin": "feedcrawler.exe",
@@ -23,7 +23,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/rix1337/FeedCrawler/releases/download/v.$version/feedcrawler-$version-standalone-win64.exe"
+                "url": "https://github.com/rix1337/FeedCrawler/releases/download/v$version/feedcrawler-$version-standalone-win64.exe"
             }
         }
     }
