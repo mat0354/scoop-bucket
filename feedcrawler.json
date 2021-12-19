@@ -1,26 +1,22 @@
 {
-    "version": "11.1.7",
+    "version": "12.0.4",
     "description": "FeedCrawler (ehemals RSScrawler) automatisiert bequem das Hinzufügen von Links für den JDownloader.",
     "homepage": "https://github.com/rix1337/FeedCrawler",
     "license": "MIT License",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/rix1337/FeedCrawler/releases/download/v.11.1.7/feedcrawler-11.1.7-standalone-win64.exe#/feedcrawler.exe",
-            "hash": "43ccf765ddba52938baa8351f6a88ce90fb04bbac9db6221f564855e5dccdee5"
+            "url": "https://github.com/rix1337/FeedCrawler/releases/download/v.12.0.4/feedcrawler-12.0.4-standalone-win64.exe",
+            "hash": "94841be4eeddf675191d67a539fa802de837ab620f0215ca5dffcd6877926c8f"
         }
     },
     "bin": "feedcrawler.exe",
-    "persist": [
-        "config"
-    ],
+    "persist": "config",
     "installer": {
-        "script": [
-            "\".\\config\" | Out-File -FilePath \"$original_dir\\feedcrawler.conf\" -Encoding ascii -NoNewline"
-        ]
+        "script": "\".\\config\" | Out-File -FilePath \"$original_dir\\feedcrawler.conf\" -Encoding ascii -NoNewline"
     },
     "checkver": {
         "github": "https://github.com/rix1337/FeedCrawler",
-        "regex": "\/releases\/tag\/(?:v|V)\\.?([\\d.]+)"
+        "regex": "/releases/tag/(?:v|V)\\.?([\\d.]+)"
     },
     "autoupdate": {
         "architecture": {
