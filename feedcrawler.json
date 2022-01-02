@@ -1,12 +1,12 @@
 {
-    "version": "12.2.5",
+    "version": "12.2.6",
     "description": "FeedCrawler (ehemals RSScrawler) automatisiert bequem das Hinzufügen von Links für den JDownloader.",
     "homepage": "https://github.com/rix1337/FeedCrawler",
     "license": "MIT License",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/rix1337/FeedCrawler/releases/download/v.12.2.5/feedcrawler-12.2.5-standalone-win64.exe",
-            "hash": "c4a5e1afa2cbd048d4d224f8b975662f9ae7d03e14553a4c23bae884874fbf5d"
+            "url": "https://github.com/rix1337/FeedCrawler/releases/download/v.12.2.6/feedcrawler-12.2.6-standalone-win64.exe",
+            "hash": "4949a245c8e2b260bb30310384b783fd9115bda30c3470a26d2f64ef493752d8"
         }
     },
     "bin": "feedcrawler.exe",
