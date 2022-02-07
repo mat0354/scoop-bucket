@@ -1,12 +1,12 @@
 {
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "FlareSolverr is a proxy server to bypass Cloudflare protection.",
     "homepage": "https://github.com/FlareSolverr/FlareSolverr",
     "license": "MIT License",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/FlareSolverr/FlareSolverr/releases/download/v2.2.0/flaresolverr-v2.2.0-windows-x64.zip",
-            "hash": "4965b46f53260a8c9dcd2ab5c853816cf2bf7bdcf8603652006672efc0317f28",
+            "url": "https://github.com/FlareSolverr/FlareSolverr/releases/download/v2.2.1/flaresolverr-v2.2.1-windows-x64.zip",
+            "hash": "65e0c9b91ffe98dbfa61606f3e310945a1ca67e7798a5b1459bd54099a73359f",
             "extract_dir": "flaresolverr"
         }
     },
